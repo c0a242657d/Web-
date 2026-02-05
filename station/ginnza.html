@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        li {
+            background-color: rgba(255,255,255,0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px;
+            color: #ffeaa7;
+        }
+
+        form {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>銀座のおすすめスポット</h1>
+    <p>銀座は東京の中心に位置し、高級ショッピングエリアとして知られています。以下は銀座で訪れるべきおすすめスポットです。</p>
+    <ul>
+        <li><strong>銀座三越</strong> - 高級デパートで、ファッション、グルメ、雑貨など多彩な商品が揃っています。</li>
+        <li><strong>和光本館</strong> - 銀座の象徴的な建物で、時計や宝飾品の専門店があります。</li>
+        <li><strong>銀座シックス</strong> - 最新のショッピングモールで、国内外のブランドショップやレストランが充実しています。</li>
+        <li><strong>歌舞伎座</strong> - 伝統的な日本の演劇を楽しむことができる劇場です。</li>
+        <li><strong>数寄屋橋公園</strong> - 都会のオアシスとして知られ、リラックスできるスポットです。</li>
+    </ul>
+    <h2>コメントはこちら</h2>
+    <form>
+        <label for="comment">コメント:</label><br>
+        <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="送信">
+</body>
+</html>

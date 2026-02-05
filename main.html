@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #ffeaa7;
+        }
+
+        #go_to {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fdcb6e;
+            margin: 20px 0;
+        }
+
+        a {
+            color: #74b9ff;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin: 10px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: rgba(255,255,255,0.2);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>東京地下鉄ルーレット</h1>
+    <button onclick="DO_ruret()">ルーレットを回す</button>
+    <h2>次の行き先は</h2>
+    <h2 id="go_to"></h2>
+    <a id="result_URL"></a><br>
+    <a id="map_URL"></a>
+
+    <script>
+        function DO_ruret() {
+            // ルーレットの処理をここに記述
+            const G = ["G01 渋谷　しぶや","G02 表参道　おもてさんどう","G03 外苑前 がいえんまえ","G04 青山一丁目　あおやまいっちょうめ","G05 赤坂見附　あかさかみつけ","G06 溜池山王　ためいけさんのう","G07 虎ノ門　とらのもん","G08 新橋　しんばし","G09 銀座　ぎんざ","G10 京橋　きょうばし","G11 日本橋　にほんばし","G12 三越前　みつこしまえ","G13 神田　かんだ","G14 末広町　すえひろちょう","G15 上野広小路　うえのひろこうじ","G16 上野  うえの","G17 稲荷町　いなりちょう","G18 田原町　たわらまち","G19 浅草   あさくさ"];
+            const M =["M01 荻窪　おぎくぼ","M02 南阿佐ケ谷　みなみあさがや","M03 新高円寺　しんこうえんじ","M04 東高円寺　ひがしこうえんじ","M05 新中野   しんなかの","M06 中野坂上　なかのさかうえ","M07 西新宿　にししんじゅく","M08 新宿　しんじゅく","M09 新宿三丁目　しんじゅくさんちょうめ","M10 新宿御苑前　しんじゅくぎょえんまえ","M11 四谷三丁目　よつやさんちょうめ","M12 四ツ谷　よつや","M13 赤坂見附　あかさかみつけ","M14 国会議事堂前　こっかいぎじどうまえ","M15 霞ケ関　かすみがせき","M16 銀座　ぎんざ","M17 東京　とうきょう","M18 大手町   おおてまち","M19 淡路町　あわじちょう","M20 御茶ノ水　おちゃのみず","M21 本郷三丁目　ほんごうさんちょうめ","M22 後楽園　こうらくえん","M23 茗荷谷　みょうがだに","M24 新大塚　しんおおつか","M25 池袋　いけぶくろ","Mb05 中野新橋　なかのしんばし","Mb04 中野富士見町　なかのふじみちょう","Mb03 方南町　ほうなんちょう"];
+            const H =["H01 中目黒　なかめぐろ","H02 恵比寿　えびす","H03 広尾　ひろお","H04 六本木　ろっぽんぎ","H05 神谷町　かみやちょう","H06 虎ノ門ヒルズ　とらのもんひるず","H07 霞ケ関　かすみがせき","H08 日比谷　ひびや","H09 銀座　ぎんざ","H10 東銀座　ひがしぎんざ","H11 築地　つきじ","H12 八丁堀　はっちょうぼり","H13 茅場町　かやばちょう","H14 人形町　にんぎょうちょう","H15 子伝馬町　こでんまちょう","H16 秋葉原　あきはばら","H17 仲御徒町　なかおかちまち","H18 上野　うえの","H19 入谷　いりや","H20 三ノ輪　みのわ","H21 南千住　みなみせんじゅ","H22 北千住　きたせんじゅ"];
+            const T =["T01 中野　なかの","T02 落合　おちあい","T03 高田馬場　たかだのばば","T04 早稲田   わせだ","T05 神楽坂   かぐらざか","T06 飯田橋　いいだばし","T07 九段下　くだんした","T08 竹橋　たけばし","T09 大手町　おおてまち","T10 日本橋　にほんばし","T11 茅場町　かやばちょう","T12 門前仲町　もんぜんなかちょう","T13 木場　きば","T14 東陽町　とうようちょう","T15 南砂町　みなみすなまち","T16 西葛西　にしかさい","T17 葛西　かさい","T18 浦安　うらやす","T19 南行徳　みなみぎょうとく","T20 行徳　ぎょうとく","T21 妙典　みょうでん","T22 原木中山　ばらきなかやま","T23 西船橋　にしふなばし"];
+            const C =["C01 代々木上原　よよぎうえはら","C02 代々木公園　よよぎこうえん","C03 明治神宮前〈原宿〉　めいじじんぐうまえ〈はらじゅく〉","C04 表参道　おもてさんどう","C05 乃木坂　のぎざか","C06 赤坂　あかさか","C07 国会議事堂前　こっかいぎじどうまえ","C08 霞ケ関　かすみがせき","C09 日比谷　ひびや","C10 二重橋前〈丸の内〉　にじゅうばしまえ〈まるのうち〉","C11 大手町　おおてまち","C12 新御茶ノ水　しんおちゃのみず","C13 湯島　ゆしま","C14 根津　ねづ","2C15 千駄木　せんだぎ","C16 西日暮里　にしにっぽり","C17 町屋　まちや","C18 北千住　きたせんじゅ","C19 綾瀬　あやせ","C20 北綾瀬　きたあやせ"];
+            const Z =["Z01 渋谷　しぶや","Z02 表参道　おもてさんどう","Z03 青山一丁目　あおやまいっちょうめ","Z04 永田町　ながたちょう","Z05 半蔵門　はんぞうもん","Z06 九段下　くだんした","Z07 神保町　じんぼうちょう","Z08 大手町　おおてまち","Z09 三越前　みつこしまえ","Z10 水天宮前　すいてんぐうまえ","Z11 清澄白河　きよすみしらかわ","Z12 住吉　すみよし","Z13 錦糸町　きんしちょう","Z14 押上〈スカイツリー前〉　おしあげ〈すかいつりーまえ〉"];
+            const N =["N01 目黒　めぐろ","N02 白金台　しろかねだい","N03 白金高輪　しろかねたかなわ","N04 麻布十番　あざぶじゅうばん","N05 六本木一丁目　ろっぽんぎいっちょうめ","N06 溜池山王　ためいけさんのう","N07 永田町　ながたちょう","N08 四ツ谷　よつや","N09 市ケ谷　いちがや","N10 飯田橋　いいだばし","N11 後楽園　こうらくえん","N12 東大前　とうだいまえ","N13 本駒込　ほんこまごめ","N14 駒込　こまごめ","N15 西ケ原　にしがはら","N16 王子　おうじ","N17 王子神谷　おうじかみや","N18 志茂　しも","N19 赤羽岩淵　あかばねいわぶち"]
+            const Y =["Y01 和光市　わこうし","Y02 地下鉄成増　ちかてつなります","Y03 地下鉄赤塚　ちかてつあかつか","Y04 平和台　へいわだい","Y05 氷川台　ひかわだい","Y06 小竹向原　こたけむかいはら","Y07 千川　せんかわ","Y08 要町　かなめちょう","Y09 池袋　いけぶくろ","Y10 東池袋　ひがしいけぶくろ","Y11 護国寺　ごこくじ","Y12 江戸川橋　えどがわばし","Y13 飯田橋　いいだばし","Y14 市ケ谷　いちがや","Y15 麹町　こうじまち","Y16 永田町　ながたちょう","Y17 桜田門　さくらだもん","Y18 有楽町　ゆうらくちょう","Y19 銀座一丁目　ぎんざいっちょうめ","Y20 新富町　しんとみちょう","Y21 月島　つきしま","Y22 豊洲　とよす","Y23 辰巳　たつみ","Y24 新木場　しんきば"];
+            const F =["F01 和光市　わこうし","F02 地下鉄成増　ちかてつなります","F03 地下鉄赤塚　ちかてつあかつか","F04 平和台　へいわだい","F05 氷川台　ひかわだい","F06 小竹向原　こたけむかいはら","F07 千川　せんかわ","F08 要町　かなめちょう","F09 池袋　いけぶくろ","F10 雑司が谷　ぞうしがや","F11 西早稲田　にしわせだ","F12 東新宿　ひがししんじゅく","F13 新宿三丁目　しんじゅくさんちょうめ","F14 北参道　きたさんどう","F15 明治神宮前〈原宿〉　めいじじんぐうまえ〈はらじゅく〉","F16 渋谷　しぶや"];
+
+            const destinations = [];
+            destinations.push(...G);
+            destinations.push(...M);
+            destinations.push(...H);
+            destinations.push(...T);
+            destinations.push(...C);
+            destinations.push(...Z);
+            destinations.push(...N);
+            destinations.push(...Y);
+            destinations.push(...F);
+
+            const randomDestination = destinations[Math.floor(Math.random() * destinations.length)];
+            document.getElementById("go_to").textContent = randomDestination;
+            document.getElementById("result_URL").textContent = randomDestination + "の評価";
+            document.getElementById("result_URL").href = "./station/" + randomDestination.toLowerCase() + ".html";
+            document.getElementById("map_URL").textContent = randomDestination + "までの行き方を確認する";
+            document.getElementById("map_URL").href = "./map.html"
+        }
+    </script>
+</body>
+</html>

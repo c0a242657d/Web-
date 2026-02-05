@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            padding: 40px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <h1>東京メトロオンリー検索</h1>
+
+    <p>出発駅を選択</p>
+    <select id="start_station">
+        <option value="渋谷">渋谷</option>
+        <option value="新宿">新宿</option>
+        <option value="池袋">池袋</option>
+        <option value="銀座">銀座</option>
+        <option value="秋葉原">秋葉原</option>
+        <option value="代々木上原">代々木上原</option>
+    </select>
+    <p>到着駅を選択</p>
+    <select id="end_station">
+        <option value="渋谷">渋谷</option>
+        <option value="新宿">新宿</option>
+        <option value="池袋">池袋</option>
+        <option value="銀座">銀座</option>
+        <option value="秋葉原">秋葉原</option>
+    </select>
+    <br><br>
+    <button onclick="searchRoute()">経路検索</button>
+    <h2 id="route_result"></h2>
+    <h2 id="keiro"></h2>
+    <h2 id="osusume"></h2>
+    <script>
+        function searchRoute() {
+            const start = document.getElementById("start_station").value;
+            const end = document.getElementById("end_station").value;
+            document.getElementById("route_result").textContent = start + "から" + end + "への経路を検索しました。";
+            document.getElementById("keiro").textContent = "経路：" + start + " → 新宿三丁目 →" + end;
+
+            if (start === "代々木上原")
+            document.getElementById("osusume").textContent = "もしかして小田急線からのご利用ですか？\nでしたら以下の切符がお得です！";
+        }
+    </script>
+</body>
+</html>
